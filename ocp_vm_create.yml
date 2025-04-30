@@ -12,7 +12,6 @@
           metadata:
             name: "{{ vm_name }}"
             namespace: "{{ ocp_namespace }}"
-            wait: true
             labels:
               app: "{{ vm_name }}"
               kubevirt.io/dynamic-credentials-support: 'true'
