@@ -29,7 +29,7 @@
                 spec:
                   sourceRef:
                     kind: DataSource
-                    name: centos-stream10
+                    name: centos-stream9
                     namespace: openshift-virtualization-os-images
                   storage:
                     resources:
@@ -89,7 +89,7 @@
                       userData: |
                         #cloud-config
                         users:
-                          - name: cloud-user
+                          - name: centos
                             sudo: ['ALL=(ALL) NOPASSWD: ALL']
                             groups: wheel
                             shell: /bin/bash
