@@ -15,12 +15,12 @@
             labels:
               app: "{{ vm_name }}"
               kubevirt.io/dynamic-credentials-support: 'true'
-              vm.kubevirt.io/template: centos-stream9-server-small
+              vm.kubevirt.io/template: centos-stream9
               vm.kubevirt.io/template.namespace: openshift
               vm.kubevirt.io/template.revision: '1'
               vm.kubevirt.io/template.version: v0.26.0
           spec:
-            runStrategy: Manual
+            runStrategy: Always
             dataVolumeTemplates:
               - apiVersion: cdi.kubevirt.io/v1beta1
                 kind: DataVolume
@@ -29,12 +29,13 @@
                 spec:
                   sourceRef:
                     kind: DataSource
-                    name: centos-stream9
+                    name: centos.stream9
                     namespace: openshift-virtualization-os-images
                   storage:
                     resources:
                       requests:
                         storage: 30Gi
+                    storageClassName: gp3
             template:
               metadata:
                 labels:
