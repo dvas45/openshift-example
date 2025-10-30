@@ -1,0 +1,161 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  annotations:
+    vm.kubevirt.io/validations: |
+      [
+        {
+          "name": "minimal-required-memory",
+          "path": "jsonpath::.spec.domain.memory.guest",
+          "rule": "integer",
+          "message": "This VM requires more memory.",
+          "min": 1610612736
+        }
+      ]
+  labels:
+    app: "{{ vm_name }}"
+    kubevirt.io/dynamic-credentials-support: 'true'
+    vm.kubevirt.io/template: centos-stream9-server-small
+    vm.kubevirt.io/template.namespace: openshift
+    vm.kubevirt.io/template.revision: '1'
+    vm.kubevirt.io/template.version: v0.26.0
+  managedFields:
+    - apiVersion: kubevirt.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:vm.kubevirt.io/validations': {}
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:kubevirt.io/dynamic-credentials-support': {}
+            'f:vm.kubevirt.io/template': {}
+            'f:vm.kubevirt.io/template.namespace': {}
+            'f:vm.kubevirt.io/template.revision': {}
+            'f:vm.kubevirt.io/template.version': {}
+        'f:spec':
+          .: {}
+          'f:dataVolumeTemplates': {}
+          'f:runStrategy': {}
+          'f:template':
+            .: {}
+            'f:metadata':
+              .: {}
+              'f:annotations':
+                .: {}
+                'f:vm.kubevirt.io/flavor': {}
+                'f:vm.kubevirt.io/os': {}
+                'f:vm.kubevirt.io/workload': {}
+              'f:labels':
+                .: {}
+                'f:kubevirt.io/domain': {}
+                'f:kubevirt.io/size': {}
+            'f:spec':
+              .: {}
+              'f:domain':
+                .: {}
+                'f:cpu':
+                  .: {}
+                  'f:cores': {}
+                  'f:sockets': {}
+                  'f:threads': {}
+                'f:devices':
+                  .: {}
+                  'f:disks': {}
+                  'f:interfaces': {}
+                  'f:networkInterfaceMultiqueue': {}
+                  'f:rng': {}
+                'f:machine':
+                  .: {}
+                  'f:type': {}
+                'f:memory':
+                  .: {}
+                  'f:guest': {}
+              'f:networks': {}
+              'f:terminationGracePeriodSeconds': {}
+              'f:volumes': {}
+      manager: kubectl-create
+      operation: Update
+  name: "{{ vm_name }}"
+  namespace: bgperm2-dev
+spec:
+  dataVolumeTemplates:
+    - apiVersion: cdi.kubevirt.io/v1beta1
+      kind: DataVolume
+      metadata:
+        creationTimestamp: null
+        name: "{{ vm_name }}"
+      spec:
+        sourceRef:
+          kind: DataSource
+          name: centos-stream9
+          namespace: openshift-virtualization-os-images
+        storage:
+          resources:
+            requests:
+              storage: 30Gi
+  runStrategy: Manual
+  template:
+    metadata:
+      annotations:
+        vm.kubevirt.io/flavor: small
+        vm.kubevirt.io/os: centos-stream9
+        vm.kubevirt.io/workload: server
+      creationTimestamp: null
+      labels:
+        kubevirt.io/domain: "{{ vm_name }}"
+        kubevirt.io/size: small
+    spec:
+      architecture: amd64
+      domain:
+        cpu:
+          cores: 1
+          sockets: 1
+          threads: 1
+        devices:
+          disks:
+            - disk:
+                bus: virtio
+              name: rootdisk
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+          interfaces:
+            - macAddress: '02:0d:82:00:01:86'
+              masquerade: {}
+              model: virtio
+              name: default
+          networkInterfaceMultiqueue: true
+          rng: {}
+        machine:
+          type: pc-q35-rhel9.2.0
+        memory:
+          guest: 2Gi
+        resources:
+          limits:
+            memory: 2Gi
+      networks:
+        - name: default
+          pod: {}
+      terminationGracePeriodSeconds: 180
+      tolerations:
+        - effect: NoSchedule
+          key: sandbox-cnv
+          operator: Exists
+      volumes:
+        - dataVolume:
+            name: centos-stream9-rose-squirrel-91
+          name: rootdisk
+        - cloudInitNoCloud:
+            userData: |
+              #cloud-config
+              chpasswd:
+                expire: false
+              password: mr81-7uic-gvaq
+              ssh_authorized_keys:
+              - |
+                ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDWLVjB2r2pRquMPtmI/8brPq9vwc8/PJzih1/Alnbkmhv60W0EuB5adWPktX8MHsKZnaClNGrYqj18P3beD6j66RmiJkuppl0TACDb6PqfuN/E0SSbuHw8xPZLp50XKj71AITW34h9JeoX8NDVVS0d1Y3+ySXO4ITAhxWAIROCafV8CQvJEPy72/IcdLj21PVznLxb2uR82LrI06acHM+0psIf98ZqTi4u2to0P4XIYLbWZdkjS2o4dim/9YV11GrR09YfnTNPhjhtOt+e/s5ZbvE/KahFriKuwXUaII7x0NvcMSmj7dgGu3HxLNe1mZrdmTQNmfZ6UcvT+AniCShXOdHRckeK6oLvkdx1J0qUA0a0Ze0VkKSa4f1uC+I5Svs3jqFqmy2Uu8REVaajAOyyLj8Y2wacZwdlaINwPM1u5ewFezhIp1L+xzGiMEZYkGBywmldoJyTa/mBTWxt4pBDqitiGrWPjckFNBGk14ebG7AwFh5KiG0impvZxPkbMFE= sandbox@cnv
+              user: centos
+          name: cloudinitdisk
