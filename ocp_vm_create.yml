@@ -40,6 +40,7 @@
                 labels:
                   kubevirt.io/domain: "{{ vm_name }}"
                   kubevirt.io/size: small
+                  network.kubevirt.io/headlessService: headless
               spec:
                 architecture: amd64
                 domain:
