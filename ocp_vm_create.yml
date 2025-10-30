@@ -37,6 +37,10 @@
                         storage: 30Gi        
             template:
               metadata:
+                annotations:
+                  vm.kubevirt.io/flavor: small
+                  vm.kubevirt.io/os: centos-stream9
+                  vm.kubevirt.io/workload: server
                 labels:
                   kubevirt.io/domain: "{{ vm_name }}"
                   kubevirt.io/size: small
