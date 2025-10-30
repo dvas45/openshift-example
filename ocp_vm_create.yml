@@ -35,11 +35,7 @@
                     resources:
                       requests:
                         storage: 30Gi
-                    storageClassName: gp3
-            instancetype:
-              name: u1.medium
-            preference:
-              name: centos.stream9        
+                    storageClassName: gp3        
             template:
               metadata:
                 labels:
