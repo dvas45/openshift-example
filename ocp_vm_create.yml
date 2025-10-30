@@ -12,6 +12,8 @@
           metadata:
             name: "{{ vm_name }}"
             namespace: "{{ ocp_namespace }}"
+            finalizers:
+              - kubevirt.io/virtualMachineControllerFinalize
             labels:
               app: "{{ vm_name }}"
               kubevirt.io/dynamic-credentials-support: 'true'
