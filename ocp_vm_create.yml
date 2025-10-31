@@ -25,7 +25,7 @@
               - apiVersion: cdi.kubevirt.io/v1beta1
                 kind: DataVolume
                 metadata:
-                  name: centos-stream9-brown-leopon-41
+                  name: centos-stream9-test1
                 spec:
                   sourceRef:
                     kind: DataSource
