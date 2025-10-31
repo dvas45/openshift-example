@@ -25,7 +25,7 @@
               - apiVersion: cdi.kubevirt.io/v1beta1
                 kind: DataVolume
                 metadata:
-                  name: test1
+                  name: test1-volume
                 spec:
                   sourceRef:
                     kind: DataSource
