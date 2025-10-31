@@ -25,7 +25,7 @@
               - apiVersion: cdi.kubevirt.io/v1beta1
                 kind: DataVolume
                 metadata:
-                  name: "{{ vm_name }}"
+                  name: centos-stream9-brown-leopon-41
                 spec:
                   sourceRef:
                     kind: DataSource
