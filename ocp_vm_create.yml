@@ -10,10 +10,10 @@
           apiVersion: kubevirt.io/v1
           kind: VirtualMachine
           metadata:
-            name: "{{ vm_name }}"
-            namespace: "{{ ocp_namespace }}"
+            name: test1
+            namespace: bgperm2-dev
             labels:
-              app: "{{ vm_name }}"
+              app: test1
               kubevirt.io/dynamic-credentials-support: 'true'
               vm.kubevirt.io/template: centos-stream9-server-small
               vm.kubevirt.io/template.namespace: openshift
@@ -25,7 +25,7 @@
               - apiVersion: cdi.kubevirt.io/v1beta1
                 kind: DataVolume
                 metadata:
-                  name: test1-volume
+                  name: test1
                 spec:
                   sourceRef:
                     kind: DataSource
@@ -40,7 +40,7 @@
             template:
               metadata:
                 labels:
-                  kubevirt.io/domain: "{{ vm_name }}"
+                  kubevirt.io/domain: test1
                   kubevirt.io/size: small
               spec:
                 architecture: amd64
@@ -85,7 +85,7 @@
                     operator: Exists
                 volumes:
                   - dataVolume:
-                      name: "{{ vm_name }}"
+                      name: test1
                     name: rootdisk
                   - cloudInitNoCloud:
                       userData: |
