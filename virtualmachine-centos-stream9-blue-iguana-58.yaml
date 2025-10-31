@@ -2,7 +2,6 @@
 kind: VirtualMachine
 metadata:
   annotations:
-    kubemacpool.io/transaction-timestamp: '2025-10-31T12:31:01.107889676Z'
     vm.kubevirt.io/validations: |
       [
         {
@@ -13,10 +12,8 @@ metadata:
           "min": 1610612736
         }
       ]
-  creationTimestamp: '2025-10-31T12:31:01Z'
-  generation: 1
   labels:
-    app: centos-stream9-blue-iguana-58
+    app: "{{ vm_name }}"
     kubevirt.io/dynamic-credentials-support: 'true'
     vm.kubevirt.io/template: centos-stream9-server-small
     vm.kubevirt.io/template.namespace: openshift
@@ -81,17 +78,15 @@ metadata:
               'f:volumes': {}
       manager: kubectl-create
       operation: Update
-      time: '2025-10-31T12:31:01Z'
-  name: centos-stream9-blue-iguana-58
+  name: "{{ vm_name }}"
   namespace: bgperm2-dev
-  uid: 89ae5882-aa9a-4d94-aff3-794acf9d5b0c
 spec:
   dataVolumeTemplates:
     - apiVersion: cdi.kubevirt.io/v1beta1
       kind: DataVolume
       metadata:
         creationTimestamp: null
-        name: centos-stream9-blue-iguana-58
+        name: "{{ vm_name }}"
       spec:
         sourceRef:
           kind: DataSource
@@ -110,7 +105,7 @@ spec:
         vm.kubevirt.io/workload: server
       creationTimestamp: null
       labels:
-        kubevirt.io/domain: centos-stream9-blue-iguana-58
+        kubevirt.io/domain: "{{ vm_name }}"
         kubevirt.io/size: small
     spec:
       architecture: amd64
@@ -151,7 +146,7 @@ spec:
           operator: Exists
       volumes:
         - dataVolume:
-            name: centos-stream9-blue-iguana-58
+            name: "{{ vm_name }}"
           name: rootdisk
         - cloudInitNoCloud:
             userData: |
