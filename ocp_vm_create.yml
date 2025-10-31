@@ -1,4 +1,13 @@
-apiVersion: kubevirt.io/v1
+---
+- name: Create a VM in OpenShift Virtualization
+  hosts: localhost
+  gather_facts: false
+  
+  tasks:
+    - name: Create a CentOS VM in OpenShift
+      redhat.openshift.k8s:
+        definition:
+          apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
   annotations:
