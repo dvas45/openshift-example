@@ -1,0 +1,248 @@
+﻿apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  annotations:
+    kubemacpool.io/transaction-timestamp: '2025-11-01T15:04:50.743201131Z'
+    kubevirt.io/latest-observed-api-version: v1
+    kubevirt.io/storage-observed-api-version: v1
+  resourceVersion: '5120107982'
+  name: rhel9-server
+  uid: 326daac5-526a-470c-bab4-0d6071da7dbc
+  creationTimestamp: '2025-11-01T15:04:50Z'
+  generation: 1
+  managedFields:
+    - apiVersion: kubevirt.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:kubevirt.io/dynamic-credentials-support': {}
+            'f:vm.kubevirt.io/template': {}
+            'f:vm.kubevirt.io/template.namespace': {}
+            'f:vm.kubevirt.io/template.revision': {}
+            'f:vm.kubevirt.io/template.version': {}
+        'f:spec':
+          .: {}
+          'f:dataVolumeTemplates': {}
+          'f:runStrategy': {}
+          'f:template':
+            .: {}
+            'f:metadata':
+              .: {}
+              'f:labels':
+                .: {}
+                'f:kubevirt.io/domain': {}
+                'f:kubevirt.io/size': {}
+            'f:spec':
+              .: {}
+              'f:architecture': {}
+              'f:domain':
+                .: {}
+                'f:cpu':
+                  .: {}
+                  'f:cores': {}
+                  'f:sockets': {}
+                  'f:threads': {}
+                'f:devices':
+                  .: {}
+                  'f:disks': {}
+                  'f:interfaces': {}
+                  'f:networkInterfaceMultiqueue': {}
+                  'f:rng': {}
+                'f:features':
+                  .: {}
+                  'f:acpi': {}
+                  'f:smm':
+                    .: {}
+                    'f:enabled': {}
+                'f:firmware':
+                  .: {}
+                  'f:bootloader':
+                    .: {}
+                    'f:efi': {}
+                'f:machine':
+                  .: {}
+                  'f:type': {}
+                'f:memory':
+                  .: {}
+                  'f:guest': {}
+              'f:networks': {}
+              'f:terminationGracePeriodSeconds': {}
+              'f:tolerations': {}
+              'f:volumes': {}
+      manager: OpenAPI-Generator
+      operation: Update
+      time: '2025-11-01T15:04:50Z'
+    - apiVersion: kubevirt.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:kubevirt.io/latest-observed-api-version': {}
+            'f:kubevirt.io/storage-observed-api-version': {}
+          'f:finalizers':
+            .: {}
+            'v:"kubevirt.io/virtualMachineControllerFinalize"': {}
+      manager: virt-controller
+      operation: Update
+      time: '2025-11-01T15:04:50Z'
+    - apiVersion: kubevirt.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:printableStatus': {}
+          'f:runStrategy': {}
+          'f:conditions': {}
+          .: {}
+          'f:ready': {}
+          'f:volumeSnapshotStatuses': {}
+          'f:observedGeneration': {}
+          'f:created': {}
+          'f:desiredGeneration': {}
+      manager: virt-controller
+      operation: Update
+      subresource: status
+      time: '2025-11-01T15:09:40Z'
+  namespace: bgperm2-dev
+  finalizers:
+    - kubevirt.io/virtualMachineControllerFinalize
+  labels:
+    app: rhel9-server
+    kubevirt.io/dynamic-credentials-support: 'true'
+    vm.kubevirt.io/template: rhel9-server-small
+    vm.kubevirt.io/template.namespace: openshift
+    vm.kubevirt.io/template.revision: '1'
+    vm.kubevirt.io/template.version: v0.26.0
+spec:
+  dataVolumeTemplates:
+    - apiVersion: cdi.kubevirt.io/v1beta1
+      kind: DataVolume
+      metadata:
+        creationTimestamp: null
+        name: rhel9-server
+      spec:
+        sourceRef:
+          kind: DataSource
+          name: rhel9
+          namespace: openshift-virtualization-os-images
+        storage:
+          resources:
+            requests:
+              storage: 30Gi
+  runStrategy: Manual
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        kubevirt.io/domain: rhel9-server
+        kubevirt.io/size: small
+    spec:
+      architecture: amd64
+      domain:
+        cpu:
+          cores: 1
+          sockets: 1
+          threads: 1
+        devices:
+          disks:
+            - disk:
+                bus: virtio
+              name: rootdisk
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+          interfaces:
+            - macAddress: '02:f3:be:00:01:0a'
+              masquerade: {}
+              model: virtio
+              name: default
+          networkInterfaceMultiqueue: true
+          rng: {}
+        features:
+          acpi: {}
+          smm:
+            enabled: true
+        firmware:
+          bootloader:
+            efi: {}
+        machine:
+          type: pc-q35-rhel9.2.0
+        memory:
+          guest: 2Gi
+        resources:
+          limits:
+            memory: 2Gi
+      networks:
+        - name: default
+          pod: {}
+      terminationGracePeriodSeconds: 180
+      tolerations:
+        - effect: NoSchedule
+          key: sandbox-cnv
+          operator: Exists
+      volumes:
+        - dataVolume:
+            name: rhel9-server
+          name: rootdisk
+        - cloudInitNoCloud:
+            userData: |
+              #cloud-config
+              chpasswd:
+                expire: false
+                list: |
+                  cloud-user:123qwe
+              ssh_authorized_keys:
+              - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxDk3j89Upnrgd1nR0PcHiDWQZ7qjq+htuw9kmLidC9Mtr7fyIg1eLS2yJp7Rhu+2eOZ0wToPmm9MjhRRG89ESB+Q1lAhWHdm2Pv+TEWwf0MxN3mCgMKyZKauj5+6F37sotb2PH+FcrN7/m9ewTzyyEcb6J4Nkw2dLfdR2Fa5BNIZOXED0oBVMBZbriU3+aILUKUWlH1MTa09JRqA4Sf55z247pwSpuXoWW/mAK+mmALjQJ6YAXqncu3w0acsGLxE5SkJpZ1hDapMbFfiD9nhd9ctf92LjMyI9DW5BtkObGbsPXadj+fxY0xlA2GXXpbonIOdcXJQsPwfxY5ii9rMj
+              - |
+                ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDWLVjB2r2pRquMPtmI/8brPq9vwc8/PJzih1/Alnbkmhv60W0EuB5adWPktX8MHsKZnaClNGrYqj18P3beD6j66RmiJkuppl0TACDb6PqfuN/E0SSbuHw8xPZLp50XKj71AITW34h9JeoX8NDVVS0d1Y3+ySXO4ITAhxWAIROCafV8CQvJEPy72/IcdLj21PVznLxb2uR82LrI06acHM+0psIf98ZqTi4u2to0P4XIYLbWZdkjS2o4dim/9YV11GrR09YfnTNPhjhtOt+e/s5ZbvE/KahFriKuwXUaII7x0NvcMSmj7dgGu3HxLNe1mZrdmTQNmfZ6UcvT+AniCShXOdHRckeK6oLvkdx1J0qUA0a0Ze0VkKSa4f1uC+I5Svs3jqFqmy2Uu8REVaajAOyyLj8Y2wacZwdlaINwPM1u5ewFezhIp1L+xzGiMEZYkGBywmldoJyTa/mBTWxt4pBDqitiGrWPjckFNBGk14ebG7AwFh5KiG0impvZxPkbMFE= sandbox@cnv
+              users:
+              - groups: wheel
+                lock_passwd: false
+                name: cloud-user
+                passwd: 123qwe
+                shell: /bin/bash
+                ssh_authorized_keys:
+                - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxDk3j89Upnrgd1nR0PcHiDWQZ7qjq+htuw9kmLidC9Mtr7fyIg1eLS2yJp7Rhu+2eOZ0wToPmm9MjhRRG89ESB+Q1lAhWHdm2Pv+TEWwf0MxN3mCgMKyZKauj5+6F37sotb2PH+FcrN7/m9ewTzyyEcb6J4Nkw2dLfdR2Fa5BNIZOXED0oBVMBZbriU3+aILUKUWlH1MTa09JRqA4Sf55z247pwSpuXoWW/mAK+mmALjQJ6YAXqncu3w0acsGLxE5SkJpZ1hDapMbFfiD9nhd9ctf92LjMyI9DW5BtkObGbsPXadj+fxY0xlA2GXXpbonIOdcXJQsPwfxY5ii9rMj
+                sudo:
+                - 'ALL=(ALL) NOPASSWD: ALL'
+          name: cloudinitdisk
+status:
+  conditions:
+    - lastProbeTime: null
+      lastTransitionTime: '2025-11-01T15:09:23Z'
+      status: 'True'
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: null
+      message: All of the VMI's DVs are bound and ready
+      reason: AllDVsReady
+      status: 'True'
+      type: DataVolumesReady
+    - lastProbeTime: null
+      lastTransitionTime: null
+      message: 'cannot migrate VMI: PVC rhel9-server is not shared, live migration requires that all PVCs must be shared (using ReadWriteMany access mode)'
+      reason: DisksNotLiveMigratable
+      status: 'False'
+      type: LiveMigratable
+    - lastProbeTime: null
+      lastTransitionTime: null
+      status: 'True'
+      type: StorageLiveMigratable
+    - lastProbeTime: '2025-11-01T15:09:40Z'
+      lastTransitionTime: null
+      status: 'True'
+      type: AgentConnected
+  created: true
+  desiredGeneration: 1
+  observedGeneration: 1
+  printableStatus: Running
+  ready: true
+  runStrategy: Manual
+  volumeSnapshotStatuses:
+    - enabled: true
+      name: rootdisk
+    - enabled: false
+      name: cloudinitdisk
+      reason: 'Snapshot is not supported for this volumeSource type [cloudinitdisk]'
