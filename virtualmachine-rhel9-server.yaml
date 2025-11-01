@@ -245,4 +245,4 @@ status:
       name: rootdisk
     - enabled: false
       name: cloudinitdisk
-      reason: 'Snapshot is not supported for this volumeSource type [cloudinitdisk]'
+      reason: 'Snapshot is not supported for this volumeSource type [cloudinitdisk'
