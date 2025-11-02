@@ -89,6 +89,8 @@
                   - name: rootdisk
                     persistentVolumeClaim: 
                       claimName: centos-stream9-disk
+                    accessModes:
+                      - ReadWriteMany
                   - cloudInitNoCloud:
                       userData: |
                         #cloud-config
