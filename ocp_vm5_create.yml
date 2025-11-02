@@ -11,6 +11,7 @@
           kind: VirtualMachine
           metadata:
             name: test1
+            uid: 280dd138-e429-419a-b433-5c87a1ac1c20
             namespace: bgperm2-dev
             labels:
               app: test1
@@ -25,7 +26,7 @@
               - apiVersion: cdi.kubevirt.io/v1beta1
                 kind: DataVolume
                 metadata:
-                  name: centos-stream9-disk
+                  name: test1
                 spec:
                   sourceRef:
                     kind: DataSource
@@ -34,12 +35,11 @@
                   storage:
                     resources:
                       requests:
-                        storage: 30Gi
-            preference:
-              name: centos.stream9            
+                        storage: 30Gi           
             template:
               metadata:
                 labels:
+                  vm.kubevirt.io/os: centos-stream9
                   kubevirt.io/domain: test1
                   kubevirt.io/size: small
               spec:
@@ -58,7 +58,7 @@
                           bus: virtio
                         name: cloudinitdisk
                     interfaces:
-                      - macAddress: "02:0d:82:00:01:{{ '%02x' | format(10) }}"
+                      - macAddress: '02:0d:82:00:02:10'
                         masquerade: {}
                         model: virtio
                         name: default
@@ -86,11 +86,9 @@
                     key: sandbox-cnv
                     operator: Exists
                 volumes:
-                  - name: rootdisk
-                    persistentVolumeClaim: 
-                      claimName: centos-stream9-disk
-                    accessModes:
-                      - ReadWriteMany
+                  - dataVolume:
+                     name: test1
+                    name: rootdisk 
                   - cloudInitNoCloud:
                       userData: |
                         #cloud-config
