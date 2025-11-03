@@ -15,7 +15,7 @@
             labels:
               app: "{{ vm_name }}"
               kubevirt.io/dynamic-credentials-support: 'true'
-              vm.kubevirt.io/template: rhel9-server-small
+              vm.kubevirt.io/template: centos-stream9-server-small
               vm.kubevirt.io/template.namespace: openshift
               vm.kubevirt.io/template.revision: '1'
               vm.kubevirt.io/template.version: v0.26.0
@@ -29,7 +29,7 @@
                 spec:
                   sourceRef:
                     kind: DataSource
-                    name: rhel9
+                    name: centos-stream9
                     namespace: openshift-virtualization-os-images
                   storage:
                     resources:
