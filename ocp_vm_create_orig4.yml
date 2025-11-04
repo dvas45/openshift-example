@@ -19,6 +19,7 @@
               vm.kubevirt.io/template.namespace: openshift
               vm.kubevirt.io/template.revision: '1'
               vm.kubevirt.io/template.version: v0.26.0
+              network.kubevirt.io/headlessService: headless
           spec:
             runStrategy: Manual
             dataVolumeTemplates:
@@ -40,6 +41,7 @@
                 labels:
                   kubevirt.io/domain: "{{ vm_name }}"
                   kubevirt.io/size: small
+                  vm.kubevirt.io/os: centos-stream9
                   vm.kubevirt.io/workload: server
               spec:
                 architecture: amd64
@@ -65,11 +67,11 @@
                     rng: {}
                   features:
                     acpi: {}
-                    smm:
-                      enabled: true
                   firmware:
+                    serial: 7b81a202-9c16-4176-aac3-44fd88ccb7d5
                     bootloader:
                       efi: {}
+                      bios: {}
                   machine:
                     type: pc-q35-rhel9.2.0
                   memory:
