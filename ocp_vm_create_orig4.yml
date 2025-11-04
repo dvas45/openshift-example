@@ -70,7 +70,6 @@
                   firmware:
                     serial: 7b81a202-9c16-4176-aac3-44fd88ccb7d5
                     bootloader:
-                      efi: {}
                       bios: {}
                   machine:
                     type: pc-q35-rhel9.2.0
