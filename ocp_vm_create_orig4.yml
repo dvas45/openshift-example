@@ -9,6 +9,7 @@
         definition:
           apiVersion: kubevirt.io/v1
           kind: VirtualMachine
+          manager: kubectl-create
           metadata:
             name: "{{ vm_name }}"
             namespace: "{{ ocp_namespace }}"
@@ -40,6 +41,7 @@
                 labels:
                   kubevirt.io/domain: "{{ vm_name }}"
                   kubevirt.io/size: small
+                  vm.kubevirt.io/workload: server
               spec:
                 architecture: amd64
                 domain:
