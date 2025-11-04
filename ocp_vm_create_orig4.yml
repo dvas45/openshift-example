@@ -4,7 +4,7 @@
   gather_facts: false
   
   tasks:
-    - name: Create a RHEL VM in OpenShift
+    - name: Create a RHEL 8 VM in OpenShift
       redhat.openshift.k8s:
         definition:
           apiVersion: kubevirt.io/v1
@@ -15,7 +15,7 @@
             labels:
               app: "{{ vm_name }}"
               kubevirt.io/dynamic-credentials-support: 'true'
-              vm.kubevirt.io/template: centos-stream8-server-small
+              vm.kubevirt.io/template: rhel8-server-small
               vm.kubevirt.io/template.namespace: openshift
               vm.kubevirt.io/template.revision: '1'
               vm.kubevirt.io/template.version: v0.26.0
@@ -29,7 +29,7 @@
                 spec:
                   sourceRef:
                     kind: DataSource
-                    name: centos-stream8
+                    name: rhel8
                     namespace: openshift-virtualization-os-images
                   storage:
                     resources:
