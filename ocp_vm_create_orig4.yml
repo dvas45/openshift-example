@@ -15,7 +15,7 @@
             labels:
               app: "{{ vm_name }}"
               kubevirt.io/dynamic-credentials-support: 'true'
-              vm.kubevirt.io/template: centos-stream9-server-small
+              vm.kubevirt.io/template: centos-stream10-server-small
               vm.kubevirt.io/template.namespace: openshift
               vm.kubevirt.io/template.revision: '1'
               vm.kubevirt.io/template.version: v0.26.0
@@ -40,7 +40,7 @@
                 labels:
                   kubevirt.io/domain: "{{ vm_name }}"
                   kubevirt.io/size: small
-                  vm.kubevirt.io/os: centos-stream9
+                  vm.kubevirt.io/os: centos-stream10
                   vm.kubevirt.io/workload: server
               spec:
                 architecture: amd64
@@ -58,7 +58,7 @@
                           bus: virtio
                         name: cloudinitdisk
                     interfaces:
-                      - macAddress: "02:0d:82:00:00:{{ '%02x' | format(10) }}"
+                      - macAddress: "02:f3:be:00:00:{{ '%02x' | format(10) }}"
                         masquerade: {}
                         model: virtio
                         name: default
