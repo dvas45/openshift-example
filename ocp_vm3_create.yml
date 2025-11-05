@@ -16,7 +16,7 @@
 
     - name: Reboot the system if a reboot is required after kernel or critical library updates
       ansible.builtin.reboot:
-        reboot_timeout: 600   # Wait up to 10 minutes for the host to come back
+        reboot_timeout: 15   # Wait up to 10 minutes for the host to come back
         msg: "Rebooting {{ inventory_hostname }} to apply updates"
       when: dnf_update_status.changed_packages is defined and dnf_update_status.changed_packages | length > 0 and ansible_kernel is defined and ansible_kernel not in (dnf_update_status.results | selectattr('name', 'equalto', 'kernel-core') | map(attribute='version') | list | default([]))
       # Note: The 'when' condition above is a common heuristic, but for true accuracy,
