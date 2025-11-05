@@ -18,5 +18,7 @@
 
     - name: Reboot the server if required
       ansible.builtin.reboot:
+         msg: System is going down for reboot. Please logoff now!
         reboot_timeout: 20 # Wait up to 10 minutes for the reboot
+        failed_when: never
       when: reboot_required_file.stat.exists or yum_update_result.changed_packages # Reboot if file exists or packages were updated
