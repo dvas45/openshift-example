@@ -1,6 +1,6 @@
 ---
 - name: Patch CentOS VM to latest
-  hosts: inventory-sandbox # Replace with your inventory group for CentOS VMs
+  hosts: centos9 # Replace with your inventory group for CentOS VMs
   become: yes # Run tasks with sudo privileges
 
   tasks:
