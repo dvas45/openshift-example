@@ -68,7 +68,6 @@
                   features:
                     acpi: {}
                   firmware:
-                    serial: 7b81a202-9c16-4176-aac3-44fd88ccb7d5
                     bootloader:
                       bios: {}
                   machine:
@@ -91,7 +90,7 @@
                       userData: |
                         #cloud-config
                         users:
-                          - name: cloud-user
+                          - name: centos
                             sudo: ['ALL=(ALL) NOPASSWD: ALL']
                             groups: wheel
                             shell: /bin/bash
