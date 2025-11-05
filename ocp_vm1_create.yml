@@ -18,5 +18,5 @@
 
     - name: Reboot the server if required
       ansible.builtin.reboot:
-        reboot_timeout: 600 # Wait up to 10 minutes for the reboot
+        reboot_timeout: 20 # Wait up to 10 minutes for the reboot
       when: reboot_required_file.stat.exists or yum_update_result.changed_packages # Reboot if file exists or packages were updated
