@@ -19,16 +19,16 @@
               vm.kubevirt.io/template.revision: '1'
               vm.kubevirt.io/template.version: v0.26.0
           spec:
-            runStrategy: Always
+            runStrategy: Manual
             dataVolumeTemplates:
               - apiVersion: cdi.kubevirt.io/v1beta1
                 kind: DataVolume
                 metadata:
-                  name: centos-stream10-volume
+                  name: centos9
                 spec:
                   sourceRef:
                     kind: DataSource
-                    name: centos-stream10
+                    name: centos-stream8
                     namespace: openshift-virtualization-os-images
                   storage:
                     resources:
@@ -80,7 +80,7 @@
                     operator: Exists
                 volumes:
                   - dataVolume:
-                      name: centos-stream10-volume
+                      name: centos9
                     name: rootdisk
                   - cloudInitNoCloud:
                       userData: |
