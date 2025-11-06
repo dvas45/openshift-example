@@ -38,7 +38,7 @@
             instancetype:
               name: u1.medium
             preference:
-              name: centos.stream10
+              name: centos.stream9
               spec:
                 architecture: amd64
                 domain:
