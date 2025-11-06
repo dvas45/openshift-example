@@ -25,7 +25,7 @@
               - apiVersion: cdi.kubevirt.io/v1beta1
                 kind: DataVolume
                 metadata:
-                  name: "{{ vm_name }}"
+                  name: centos-stream10-volume
                 spec:
                   sourceRef:
                     kind: DataSource
@@ -81,7 +81,7 @@
                     operator: Exists
                 volumes:
                   - dataVolume:
-                      name: "{{ vm_name }}"
+                      name: centos-stream10-volume
                     name: rootdisk
                   - cloudInitNoCloud:
                       userData: |
