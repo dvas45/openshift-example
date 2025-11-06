@@ -1,36 +1,44 @@
 ---
-- name: Create a VM in OpenShift Virtualization
-  hosts: localhost
-  gather_facts: false
-  
+- name: Install Apache and PostgreSQL
+  hosts: all
+  become: true  # This allows the tasks to run with sudo privileges
   tasks:
-    - name: Create a CentOS 9 VM in OpenShift
-      redhat.openshift.k8s:
-        definition:
-          apiVersion: kubevirt.io/v1
-          kind: VirtualMachine
-          metadata:
-            name: "{{ vm_name }}"
-            namespace: "{{ ocp_namespace }}"
-            labels:
-              app: "{{ vm_name }}"
-              kubevirt.io/dynamic-credentials-support: 'true'
-              vm.kubevirt.io/template.namespace: openshift
-              vm.kubevirt.io/template.revision: '1'
-              vm.kubevirt.io/template.version: v0.26.0
-          spec:
-            runStrategy: Manual
-            dataVolumeTemplates:
-              - apiVersion: cdi.kubevirt.io/v1beta1
-                kind: DataVolume
-                metadata:
-                  name: centos9
-                spec:
-                  sourceRef:
-                    kind: DataSource
-                    name: centos-stream9
-                    namespace: openshift-virtualization-os-images
-                  storage:
-                    resources:
-                      requests:
-                        storage: 30Gi
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Install Apache2 package
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+
+    - name: Ensure Apache2 service is running and enabled
+      ansible.builtin.service:
+        name: apache2
+        state: started
+        enabled: true
+
+    - name: Install PostgreSQL package
+      ansible.builtin.apt:
+        name: postgresql
+        state: present
+
+    - name: Ensure PostgreSQL service is running and enabled
+      ansible.builtin.service:
+        name: postgresql
+        state: started
+        enabled: true
+
+    - name: Create a PostgreSQL database (optional example)
+      ansible.builtin.postgresql_db:
+        name: myapp_db
+        state: present
+      become_user: postgres # Run this task as the postgres system user
+
+    - name: Create a PostgreSQL user (optional example)
+      ansible.builtin.postgresql_user:
+        name: myuser
+        password: mypassword
+        state: present
+      become_user: postgres
