@@ -2,12 +2,8 @@
 - name: Install Apache and PostgreSQL
   hosts: all
   become: true  # This allows the tasks to run with sudo privileges
+  gather_facts: false
   tasks:
-    - name: Update apt cache
-      ansible.builtin.dnf:
-        update_cache: true
-        cache_valid_time: 3600
-
     - name: Install Apache2 package
       ansible.builtin.dnf:
         name: apache2
@@ -20,7 +16,7 @@
         enabled: true
 
     - name: Install PostgreSQL package
-      ansible.builtin.apt:
+      ansible.builtin.dnf:
         name: postgresql
         state: present
 
