@@ -29,16 +29,3 @@
         name: postgresql
         state: started
         enabled: true
-
-    - name: Create a PostgreSQL database (optional example)
-      ansible.builtin.postgresql_db:
-        name: myapp_db
-        state: present
-      become_user: postgres # Run this task as the postgres system user
-
-    - name: Create a PostgreSQL user (optional example)
-      ansible.builtin.postgresql_user:
-        name: myuser
-        password: mypassword
-        state: present
-      become_user: postgres
