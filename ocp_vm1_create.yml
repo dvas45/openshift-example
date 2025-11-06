@@ -22,7 +22,14 @@
           - postgresql
         state: present
 
-    - name: Ensure PostgreSQL service is running and enabled
+    
+    - name: Initialize the PostgreSQL database cluster (if not already initialized)
+      ansible.builtin.shell: |
+        /usr/bin/postgresql-setup --initdb
+      args:
+        creates: /var/lib/pgsql/data/postgresql.conf # Check if config file exists as an idempotency check
+    
+    - name: Start and enable PostgreSQL service
       ansible.builtin.service:
         name: postgresql
         state: started
