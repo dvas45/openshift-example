@@ -43,9 +43,8 @@
                       - bootOrder: 1
                         name: rootdisk
                     interfaces:
-                      - macAddress: "02:f3:be:00:00:{{ '%02x' | format(10) }}"
+                      - macAddress: '02:11:4d:8c:ad:eb'
                         masquerade: {}
-                        model: virtio
                         name: default
                     networkInterfaceMultiqueue: true
                     rng: {}
