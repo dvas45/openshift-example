@@ -41,6 +41,7 @@
                   devices: 
                     disks:
                       - bootOrder: 1
+                        bus: virtio
                         name: rootdisk
                     interfaces:
                       - macAddress: '02:11:4d:8c:ad:eb'
