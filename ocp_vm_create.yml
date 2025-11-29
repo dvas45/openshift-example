@@ -13,9 +13,10 @@
             name: centos10
             namespace: dvasquez46-dev
             labels:
-              app: "{{ vm_name }}"
-              kubevirt.io/dynamic-credentials-support: 'true'
-              vm.kubevirt.io/template: centos10-bootable
+              instancetype.kubevirt.io/default-instancetype: u1.medium
+              instancetype.kubevirt.io/default-instancetype-kind: VirtualMachineClusterInstancetype
+              instancetype.kubevirt.io/default-preference: centos.stream10
+              instancetype.kubevirt.io/default-preference-kind: VirtualMachineClusterPreference
           spec:
             runStrategy: Manual
             dataVolumeTemplates:
@@ -32,13 +33,7 @@
                     resources:
                       requests:
                         storage: 30Gi
-                    storageClassName: gp3
-            instancetype:
-              kind: virtualmachineclusterinstancetype
-              name: u1.medium
-            preference:
-              kind: VirtualMachineClusterPreference
-              name: centos.stream10        
+                    storageClassName: gp3      
               spec:
                 architecture: amd64
                 domain:
@@ -61,7 +56,7 @@
                   machine:
                     type: pc-q35-rhel9.2.0
                   memory:
-                    guest: 2Gi
+                    guest: 4Gi
                 networks:
                   - name: default
                     pod: {}
