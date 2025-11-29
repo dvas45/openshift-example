@@ -29,21 +29,17 @@
                       requests:
                         storage: 30Gi
                     storageClassName: gp3
-            template:
-              metadata:
-                labels:
-                  kubevirt.io/domain: "{{ vm_name }}"
-                  kubevirt.io/size: medium
-                  vm.kubevirt.io/os: centos-stream10
-                  vm.kubevirt.io/workload: server
+            instancetype:
+              kind: virtualmachineclusterinstancetype
+              name: u1.medium
+            preference:
+              kind: VirtualMachineClusterPreference
+              name: centos.stream10        
               spec:
                 architecture: amd64
                 domain:
-                  cpu:
-                    cores: 1
-                    sockets: 1
-                    threads: 1
                   devices:
+                    autoattachPodInterface: false 
                     disks:
                       - bootOrder: 1
                         name: rootdisk
