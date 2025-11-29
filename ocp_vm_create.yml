@@ -34,9 +34,9 @@
                       requests:
                         storage: 30Gi
                     storageClassName: gp3      
-              spec:
-                architecture: amd64
-                domain:
+                spec:
+                 architecture: amd64
+                 domain:
                   devices: 
                     disks:
                       - bootOrder: 1
