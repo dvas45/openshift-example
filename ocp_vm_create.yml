@@ -12,6 +12,10 @@
           metadata:
             name: centos10
             namespace: dvasquez46-dev
+            labels:
+              app: "{{ vm_name }}"
+              kubevirt.io/dynamic-credentials-support: 'true'
+              vm.kubevirt.io/template: centos10-bootable
           spec:
             runStrategy: Manual
             dataVolumeTemplates:
