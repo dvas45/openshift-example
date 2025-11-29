@@ -38,8 +38,7 @@
               spec:
                 architecture: amd64
                 domain:
-                  devices:
-                    autoattachPodInterface: false 
+                  devices: 
                     disks:
                       - bootOrder: 1
                         name: rootdisk
