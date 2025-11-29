@@ -45,12 +45,8 @@
                     threads: 1
                   devices:
                     disks:
-                      - disk:
-                          bus: virtio
+                      - bootOrder: 1
                         name: rootdisk
-                      - disk:
-                          bus: virtio
-                        name: cloudinitdisk
                     interfaces:
                       - macAddress: "02:f3:be:00:00:{{ '%02x' | format(10) }}"
                         masquerade: {}
