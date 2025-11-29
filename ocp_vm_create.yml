@@ -27,8 +27,8 @@
                 spec:
                   sourceRef:
                     kind: DataSource
-                    name: centos10-bootable
-                    namespace: dvasquez46-dev
+                    name: centos-stream10
+                    namespace: openshift-virtualization-os-images
                   storage:
                     resources:
                       requests:
