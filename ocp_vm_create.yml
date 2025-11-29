@@ -10,15 +10,15 @@
           apiVersion: kubevirt.io/v1
           kind: VirtualMachine
           metadata:
-            name: "{{ vm_name }}"
-            namespace: "{{ ocp_namespace }}"
+            name: centos10
+            namespace: dvasquez46-dev
           spec:
             runStrategy: Manual
             dataVolumeTemplates:
               - apiVersion: cdi.kubevirt.io/v1beta1
                 kind: DataVolume
                 metadata:
-                  name: "{{ vm_name }}"
+                  name: centos10
                 spec:
                   sourceRef:
                     kind: DataSource
@@ -68,7 +68,7 @@
                     operator: Exists
                 volumes:
                   - dataVolume:
-                      name: "{{ vm_name }}"
+                      name: centos10
                     name: rootdisk
                   - cloudInitNoCloud:
                       userData: |
