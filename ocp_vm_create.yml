@@ -20,7 +20,6 @@
           spec:
             runStrategy: Manual
             dataVolumeTemplates:
-              - apiVersion: cdi.kubevirt.io/v1beta1
                 kind: DataVolume
                 metadata:
                   name: centos10
@@ -40,8 +39,10 @@
                   devices:
                     autoattachPodInterface: false
                     disks:
-                      - bootOrder: 1
+                      - disk: 
                         name: rootdisk
+                      - disk:
+                        name: cloudinitdisk
                     interfaces:
                       - macAddress: '02:11:4d:8c:ad:eb'
                         masquerade: {}
