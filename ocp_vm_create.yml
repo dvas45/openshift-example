@@ -64,12 +64,12 @@
                     guest: 4Gi
                  networks:
                    - name: default
-                      pod: {}
+                     pod: {}
                  terminationGracePeriodSeconds: 180
                  tolerations:
                    - effect: NoSchedule
-                    key: sandbox-cnv
-                    operator: Exists
+                     key: sandbox-cnv
+                     operator: Exists
                  volumes:
                    - dataVolume:
                        name: centos10
