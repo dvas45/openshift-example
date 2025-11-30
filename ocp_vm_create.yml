@@ -31,8 +31,13 @@
                     resources:
                       requests:
                         storage: 30Gi
-                    storageClassName: gp3      
-                spec:
+                    storageClassName: gp3
+            template:
+              metadata:
+                labels:
+                  kubevirt.io/domain: centos10
+                  kubevirt.io/size: medium        
+              spec:
                  architecture: amd64
                  domain:
                   devices:
