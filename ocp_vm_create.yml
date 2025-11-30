@@ -92,7 +92,7 @@
                           expire: False
                         ssh_authorized_keys:
                           - "{{ ssh_public_key }}"
-                    name: cloudinitdisk
+                     name: cloudinitdisk
 
     - name: Wait for system to become reachable over
       ansible.builtin.wait_for_connection:
