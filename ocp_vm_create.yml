@@ -19,6 +19,7 @@
           spec:
             runStrategy: Manual
             dataVolumeTemplates:
+              - apiVersion: cdi.kubevirt.io/v1beta1
                 kind: DataVolume
                 metadata:
                   name: centos10
