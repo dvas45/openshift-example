@@ -51,8 +51,9 @@
                       - disk:
                         name: cloudinitdisk
                     interfaces:
-                      - macAddress: '02:11:4d:8c:ad:eb'
+                      - macAddress: "02:f3:be:00:00:{{ '%02x' | format(10) }}"
                         masquerade: {}
+                        model: virtio
                         name: default
                     networkInterfaceMultiqueue: true
                     rng: {}
