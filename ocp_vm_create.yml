@@ -62,19 +62,19 @@
                     type: pc-q35-rhel9.2.0
                   memory:
                     guest: 4Gi
-                networks:
-                  - name: default
-                    pod: {}
-                terminationGracePeriodSeconds: 180
-                tolerations:
-                  - effect: NoSchedule
+                 networks:
+                   - name: default
+                      pod: {}
+                 terminationGracePeriodSeconds: 180
+                 tolerations:
+                   - effect: NoSchedule
                     key: sandbox-cnv
                     operator: Exists
-                volumes:
-                  - dataVolume:
-                      name: centos10
-                    name: rootdisk
-                  - cloudInitNoCloud:
+                 volumes:
+                   - dataVolume:
+                       name: centos10
+                     name: rootdisk
+                   - cloudInitNoCloud:
                       userData: |
                         #cloud-config
                         users:
