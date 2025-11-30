@@ -10,8 +10,10 @@
           apiVersion: kubevirt.io/v1
           kind: VirtualMachine
           metadata:
-            namespace: dvasquez46-dev
+            name: "{{ vm_name }}"
+            namespace: "{{ ocp_namespace }}"
             labels:
+              app: "{{ vm_name }}"
               instancetype.kubevirt.io/default-instancetype: u1.medium
               instancetype.kubevirt.io/default-instancetype-kind: VirtualMachineClusterInstancetype
               instancetype.kubevirt.io/default-preference: centos.stream10
