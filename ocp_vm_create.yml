@@ -37,10 +37,10 @@
                 spec:
                  architecture: amd64
                  domain:
-                  devices: 
+                  devices:
+                    autoattachPodInterface: false
                     disks:
                       - bootOrder: 1
-                        bus: virtio
                         name: rootdisk
                     interfaces:
                       - macAddress: '02:11:4d:8c:ad:eb'
