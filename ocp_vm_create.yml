@@ -10,7 +10,6 @@
           apiVersion: kubevirt.io/v1
           kind: VirtualMachine
           metadata:
-            name: centos10
             namespace: dvasquez46-dev
             labels:
               instancetype.kubevirt.io/default-instancetype: u1.medium
