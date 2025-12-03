@@ -1,5 +1,5 @@
 ---
-- name: Patch CentOS Stream 9 Virtual Machine
+- name: Patch CentOS Stream 10 Virtual Machine
   hosts: all
   become: true  # Escalate privileges to root (sudo) for system updates
 
