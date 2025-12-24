@@ -9,7 +9,7 @@
     apiVersion: kubevirt.io/v1
     kind: VirtualMachine    
     namespace: bgperm2-dev    
-spec:
+    spec:
   dataVolumeTemplates:
     - metadata:
         creationTimestamp: null
@@ -97,6 +97,4 @@ spec:
       tolerations:
         - effect: NoSchedule
           key: sandbox-cnv
-          operator: Exists  
- 
-  
+          operator: Exists
