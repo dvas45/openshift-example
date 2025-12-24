@@ -1,5 +1,5 @@
-- apiVersion: kubevirt.io/v1
-  kind: VirtualMachine    
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine    
   namespace: bgperm2-dev
   finalizers:
     - kubevirt.io/virtualMachineControllerFinalize
@@ -8,7 +8,7 @@
     vm.kubevirt.io/template: rhel8.5-devops-tools
     vm.kubevirt.io/template.namespace: bgperm2-dev
     vm.kubevirt.io/template.revision: '1'
-    vm.kubevirt.io/template.version: v0.19.4
+    vm.kubevirt.io/template.version: v0.19.4  
 spec:
   dataVolumeTemplates:
     - metadata:
