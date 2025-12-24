@@ -1,5 +1,5 @@
 ---
-- name: Create a VM in OpenShift Virtualization
+- name: Create a VM in OpenShift Virtualizatio
   hosts: localhost
   gather_facts: false
   
