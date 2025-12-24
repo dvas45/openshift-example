@@ -2,8 +2,7 @@
 - name: Create a VM in OpenShift Virtualization
   hosts: localhost
   gather_facts: false
-
-tasks:
+  tasks:
   - name: Create a RHEL VM in OpenShift
     redhat.openshift.k8s:
     definition:
@@ -98,4 +97,6 @@ spec:
       tolerations:
         - effect: NoSchedule
           key: sandbox-cnv
-          operator: Exists   
+          operator: Exists  
+ 
+  
