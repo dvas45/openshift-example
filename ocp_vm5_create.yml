@@ -1,5 +1,5 @@
 - apiVersion: kubevirt.io/v1
-  type: VirtualMachine    
+  kind: VirtualMachine    
   namespace: bgperm2-dev
   finalizers:
     - kubevirt.io/virtualMachineControllerFinalize
