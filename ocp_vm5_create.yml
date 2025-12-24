@@ -22,14 +22,14 @@
             resources:
               requests:
                 storage: '21474836480'
-    runStrategy: Manual
-    template:
-      metadata:
-        annotations:
-          vm.kubevirt.io/flavor: medium
-          vm.kubevirt.io/os: rhel8
-          vm.kubevirt.io/workload: server
-        creationTimestamp: null
+          runStrategy: Manual
+          template:
+            metadata:
+              annotations:
+              vm.kubevirt.io/flavor: medium
+              vm.kubevirt.io/os: rhel8
+              vm.kubevirt.io/workload: server
+          creationTimestamp: null
         labels:
           kubevirt.io/domain: rhel85-devops
           kubevirt.io/size: medium
