@@ -82,7 +82,7 @@
                       userData: |
                         #cloud-config
                         users:
-                          - name: cloud-user
+                          - name: centos
                             sudo: ['ALL=(ALL) NOPASSWD: ALL']
                             groups: wheel
                             shell: /bin/bash
