@@ -92,7 +92,7 @@
                             lock_passwd: false
                         chpasswd:
                           list: |
-                            cloud-user:{{ vm_password }}
+                            centos:{{ vm_password }}
                           expire: False
                         ssh_authorized_keys:
                           - "{{ ssh_public_key }}"
