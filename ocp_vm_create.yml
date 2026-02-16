@@ -19,7 +19,7 @@
               instancetype.kubevirt.io/default-preference: centos.stream10
               instancetype.kubevirt.io/default-preference-kind: VirtualMachineClusterPreference
           spec:
-            runStrategy: Manual
+            runStrategy: Always
             dataVolumeTemplates:
               - apiVersion: cdi.kubevirt.io/v1beta1
                 kind: DataVolume
