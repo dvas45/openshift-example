@@ -78,8 +78,7 @@
                      operator: Exists
                  volumes:
                    - dataVolume:
-                       name: cloudinitdisk
-                     name: rootdisk
+                       name: rootdisk
                    - cloudInitNoCloud:
                       userData: |
                         #cloud-config
