@@ -84,7 +84,7 @@
                       userData: |
                         #cloud-config
                         users:
-                          - name: rhel
+                          - name: cloud-user
                             sudo: ['ALL=(ALL) NOPASSWD: ALL']
                             groups: wheel
                             shell: /bin/bash
@@ -94,7 +94,7 @@
                             lock_passwd: false
                         chpasswd:
                           list: |
-                            rhel:{{ vm_password }}
+                            cloud-user:{{ vm_password }}
                           expire: False
                         ssh_authorized_keys:
                           - "{{ ssh_public_key }}"
