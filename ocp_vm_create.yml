@@ -38,7 +38,7 @@
             template:
               metadata:
                 labels:
-                  kubevirt.io/domain: centos10
+                  kubevirt.io/domain: rhel9
                   kubevirt.io/size: medium        
               spec:
                  architecture: amd64
@@ -46,9 +46,11 @@
                   devices:
                     autoattachPodInterface: false
                     disks:
-                      - disk: 
+                      - disk:
+                          bus: virtio
                         name: rootdisk
                       - disk:
+                           bus: virtio
                         name: cloudinitdisk
                     interfaces:
                       - macAddress: "02:f3:be:00:00:{{ '%02x' | format(10) }}"
