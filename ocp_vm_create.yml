@@ -76,7 +76,7 @@
                      operator: Exists
                  volumes:
                    - dataVolume:
-                       name: centos10
+                       name: rhel9
                      name: rootdisk
                    - cloudInitNoCloud:
                       userData: |
