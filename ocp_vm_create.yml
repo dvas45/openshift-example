@@ -76,7 +76,7 @@
                      operator: Exists
                  volumes:
                    - dataVolume:
-                       name: rhel9
+                       name: cloudinitdisk
                      name: rootdisk
                    - cloudInitNoCloud:
                       userData: |
