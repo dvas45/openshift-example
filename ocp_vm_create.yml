@@ -96,8 +96,6 @@
                           list: |
                             cloud-user:{{ vm_password }}
                           expire: False
-                        ssh_authorized_keys:
-                          - "{{ ssh_public_key }}"
                      name: cloudinitdisk
 
     - name: Wait for system to become reachable over
