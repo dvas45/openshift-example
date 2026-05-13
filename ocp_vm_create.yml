@@ -80,7 +80,8 @@
                    - dataVolume:
                        name: "{{ vm_name }}"
                      name: rootdisk
-                   - cloudInitNoCloud:
+                   name: cloudinitdisk
+                     cloudInitNoCloud:
                       userData: |
                         #cloud-config
                         users:
@@ -96,7 +97,7 @@
                           list: |
                             cloud-user:{{ vm_password }}
                           expire: False
-                     name: cloudinitdisk
+                     #name: cloudinitdisk
 
     - name: Wait for system to become reachable over
       ansible.builtin.wait_for_connection:
