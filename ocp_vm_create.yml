@@ -83,7 +83,7 @@
                      #name: cloudinitdisk
                    - cloudInitNoCloud:
                          userData: |
-                         #cloud-config
+                           #cloud-config
                            users:
                              - name: cloud-user
                               sudo: ['ALL=(ALL) NOPASSWD: ALL']
