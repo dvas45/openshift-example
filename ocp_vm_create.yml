@@ -82,9 +82,9 @@
                      name: rootdisk
                    - name: cloudinitdisk
                      cloudInitNoCloud:
-                      userData: |
+                       userData: |
                       #cloud-config
-                        users:
+                         users:
                           - name: cloud-user
                             sudo: ['ALL=(ALL) NOPASSWD: ALL']
                             groups: wheel
