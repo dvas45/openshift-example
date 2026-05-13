@@ -93,10 +93,10 @@
                               - "{{ ssh_public_key }}"
                             passwd: "{{ vm_password }}"
                             lock_passwd: false
-                        chpasswd:
-                          list: |
-                            cloud-user:{{ vm_password }}
-                          expire: False
+                         chpasswd:
+                           list: |
+                             cloud-user:{{ vm_password }}
+                           expire: False
                      #name: cloudinitdisk
 
     - name: Wait for system to become reachable over
