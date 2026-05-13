@@ -86,13 +86,13 @@
                            #cloud-config
                            users:
                              - name: cloud-user
-                              sudo: ['ALL=(ALL) NOPASSWD: ALL']
-                              groups: wheel
-                              shell: /bin/bash
-                              ssh_authorized_keys:
-                                - "{{ ssh_public_key }}"
-                              passwd: "{{ vm_password }}"
-                              lock_passwd: false
+                               sudo: ['ALL=(ALL) NOPASSWD: ALL']
+                               groups: wheel
+                               shell: /bin/bash
+                               ssh_authorized_keys:
+                                 - "{{ ssh_public_key }}"
+                               passwd: "{{ vm_password }}"
+                               lock_passwd: false
                            chpasswd:
                              list: |
                                cloud-user:{{ vm_password }}
