@@ -81,7 +81,7 @@
                        name: "{{ vm_name }}"
                      name: rootdisk
                      name: cloudinitdisk
-                       cloudInitNoCloud:
+                     cloudInitNoCloud:
                          userData: |
                          #cloud-config
                          user:
