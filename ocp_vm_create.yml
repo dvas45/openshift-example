@@ -28,7 +28,7 @@
                 spec:
                   sourceRef:
                     kind: DataSource
-                    name: centos-stream10
+                    name: rhel9
                     namespace: openshift-virtualization-os-images
                   storage:
                     resources:
@@ -53,7 +53,7 @@
                           bus: virtio
                         name: cloudinitdisk
                     interfaces:
-                      - macAddress: "02:f3:be:00:01:{{ '%02x' | format(10) }}"
+                      - macAddress: "02:f3:be:00:00:{{ '%02x' | format(10) }}"
                         masquerade: {}
                         model: virtio
                         name: default
