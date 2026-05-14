@@ -84,15 +84,14 @@
                    - cloudInitConfigDrive:
                        userData: |
                          #cloud-config
-                         users:
-                           - name: cloud-user
-                             sudo: ['ALL=(ALL) NOPASSWD: ALL']
-                             groups: wheel
-                             shell: /bin/bash
-                             ssh_authorized_keys:
-                               - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxDk3j89Upnrgd1nR0PcHiDWQZ7qjq+htuw9kmLidC9Mtr7fyIg1eLS2yJp7Rhu+2eOZ0wToPmm9MjhRRG89ESB+Q1lAhWHdm2Pv+TEWwf0MxN3mCgMKyZKauj5+6F37sotb2PH+FcrN7/m9ewTzyyEcb6J4Nkw2dLfdR2Fa5BNIZOXED0oBVMBZbriU3+aILUKUWlH1MTa09JRqA4Sf55z247pwSpuXoWW/mAK+mmALjQJ6YAXqncu3w0acsGLxE5SkJpZ1hDapMbFfiD9nhd9ctf92LjMyI9DW5BtkObGbsPXadj+fxY0xlA2GXXpbonIOdcXJQsPwfxY5ii9rMj
-                             passwd: "{{ vm_password }}"
-                             lock_passwd: false
+                         user: cloud-user
+                         sudo: ['ALL=(ALL) NOPASSWD: ALL']
+                         groups: wheel
+                         shell: /bin/bash
+                         ssh_authorized_keys:
+                           - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxDk3j89Upnrgd1nR0PcHiDWQZ7qjq+htuw9kmLidC9Mtr7fyIg1eLS2yJp7Rhu+2eOZ0wToPmm9MjhRRG89ESB+Q1lAhWHdm2Pv+TEWwf0MxN3mCgMKyZKauj5+6F37sotb2PH+FcrN7/m9ewTzyyEcb6J4Nkw2dLfdR2Fa5BNIZOXED0oBVMBZbriU3+aILUKUWlH1MTa09JRqA4Sf55z247pwSpuXoWW/mAK+mmALjQJ6YAXqncu3w0acsGLxE5SkJpZ1hDapMbFfiD9nhd9ctf92LjMyI9DW5BtkObGbsPXadj+fxY0xlA2GXXpbonIOdcXJQsPwfxY5ii9rMj
+                         passwd: "{{ vm_password }}"
+                         lock_passwd: false
                          chpasswd:
                            list: |
                              cloud-user:{{ vm_password }}
