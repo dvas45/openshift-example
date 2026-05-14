@@ -80,7 +80,6 @@
                    - dataVolume:
                        name: "{{ vm_name }}"
                      name: rootdisk
-                     #name: cloudinitdisk
                    - cloudInitNoCloud:
                        userData: |
                          #cloud-config
