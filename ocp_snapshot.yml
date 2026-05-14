@@ -3,8 +3,8 @@
   hosts: localhost
   gather_facts: false
   vars:
-    vm_name: "my-workload-vm"
-    namespace: "my-project"
+    vm_name: "{{vm_name}}"
+    namespace: "{{ocp_namespace}}"
 
   tasks:
     - name: Generate current date for snapshot name
@@ -19,7 +19,7 @@
           kind: VirtualMachineSnapshot
           metadata:
             name: "{{ vm_name }}-{{ snapshot_date }}"
-            namespace: "{{ namespace }}"
+            namespace: "{{ocp_namespace }}"
           spec:
             source:
               apiGroup: kubevirt.io
