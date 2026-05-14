@@ -28,7 +28,7 @@
                 spec:
                   sourceRef:
                     kind: DataSource
-                    name: centos10
+                    name: centos10-stream
                     namespace: openshift-virtualization-os-images
                   storage:
                     resources:
