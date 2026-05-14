@@ -52,7 +52,7 @@
                       - disk:
                           bus: virtio
                         name: cloudinitdisk
-                        cloudInitConfigDrive: {}
+                        cloudInitNoCloud: {}
                     interfaces:
                       - macAddress: "02:f3:be:00:01:{{ '%02x' | format(10) }}"
                         masquerade: {}
@@ -81,7 +81,7 @@
                    - dataVolume:
                        name: "{{ vm_name }}"
                      name: rootdisk
-                   - cloudInitConfigDrive:
+                   - cloudInitNoCloud:
                        userData: |
                          #cloud-config
                          user: cloud-user
@@ -89,7 +89,7 @@
                          groups: wheel
                          shell: /bin/bash
                          ssh_authorized_keys:
-                           - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxDk3j89Upnrgd1nR0PcHiDWQZ7qjq+htuw9kmLidC9Mtr7fyIg1eLS2yJp7Rhu+2eOZ0wToPmm9MjhRRG89ESB+Q1lAhWHdm2Pv+TEWwf0MxN3mCgMKyZKauj5+6F37sotb2PH+FcrN7/m9ewTzyyEcb6J4Nkw2dLfdR2Fa5BNIZOXED0oBVMBZbriU3+aILUKUWlH1MTa09JRqA4Sf55z247pwSpuXoWW/mAK+mmALjQJ6YAXqncu3w0acsGLxE5SkJpZ1hDapMbFfiD9nhd9ctf92LjMyI9DW5BtkObGbsPXadj+fxY0xlA2GXXpbonIOdcXJQsPwfxY5ii9rMj
+                           - "{{ ssh_public_key }}"
                          passwd: "{{ vm_password }}"
                          lock_passwd: false
                          chpasswd:
