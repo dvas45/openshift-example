@@ -51,7 +51,7 @@
                         name: rootdisk
                       - disk:
                           bus: virtio
-                        name: cloudinitdisk  
+                        name: cloudinitvolume  
                     interfaces:
                       - macAddress: "02:f3:be:00:01:{{ '%02x' | format(10) }}"
                         masquerade: {}
@@ -98,7 +98,7 @@
                            expire: False
                          ssh_authorized_keys:
                            - "{{ ssh_public_key }}"
-                     name: cloudinitdisk
+                     name: cloudinitvolume
 
     - name: Wait for system to become reachable over
       ansible.builtin.wait_for_connection:
