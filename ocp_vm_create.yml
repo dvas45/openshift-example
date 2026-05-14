@@ -96,7 +96,7 @@
                          chpasswd:
                            list: |
                              cloud-user:{{ vm_password }}
-                             expire: False
+                           expire: False
                          ssh_authorized_keys:
                            - "{{ ssh_public_key }}"
                      name: cloudinitdisk
