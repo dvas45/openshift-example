@@ -79,7 +79,6 @@
                  volumes:
                    - dataVolume:
                        name: "{{ vm_name }}"
-                       name: cloudinitdisk
                      name: rootdisk
                    - cloudInitNoCloud:
                        userData: |
