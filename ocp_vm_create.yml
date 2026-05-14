@@ -83,7 +83,7 @@
                    - cloudInitNoCloud:
                        userData: |
                          #cloud-config
-                         user:
+                         users:
                            - name: cloud-user
                              sudo: ['ALL=(ALL) NOPASSWD: ALL']
                              groups: wheel
