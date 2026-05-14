@@ -52,7 +52,6 @@
                       - disk:
                           bus: virtio
                         name: cloudinitdisk
-                        cloudInitNoCloud: {}
                     interfaces:
                       - macAddress: "02:f3:be:00:01:{{ '%02x' | format(10) }}"
                         masquerade: {}
