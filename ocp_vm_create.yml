@@ -89,8 +89,8 @@
                              sudo: ['ALL=(ALL) NOPASSWD: ALL']
                              groups: wheel
                              shell: /bin/bash
-                               ssh_authorized_keys:
-                                 - "{{ ssh_public_key }}"
+                             ssh_authorized_keys:
+                               - "{{ ssh_public_key }}"
                              passwd: "{{ vm_password }}"
                                lock_passwd: false
                          chpasswd:
