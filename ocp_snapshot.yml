@@ -1,0 +1,32 @@
+---
+- name: Take OpenShift VM Snapshot
+  hosts: localhost
+  gather_facts: false
+  vars:
+    vm_name: "my-workload-vm"
+    namespace: "my-project"
+
+  tasks:
+    - name: Generate current date for snapshot name
+      ansible.builtin.set_fact:
+        snapshot_date: "{{ lookup('pipe', 'date +%Y-%m-%d') }}"
+
+    - name: Create VM Snapshot in OpenShift
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: snapshot.kubevirt.io/v1alpha1
+          kind: VirtualMachineSnapshot
+          metadata:
+            name: "{{ vm_name }}-{{ snapshot_date }}"
+            namespace: "{{ namespace }}"
+          spec:
+            source:
+              apiGroup: kubevirt.io
+              kind: VirtualMachine
+              name: "{{ vm_name }}"
+      register: snapshot_result
+
+    - name: Verify Snapshot creation
+      ansible.builtin.debug:
+        msg: "Snapshot {{ snapshot_result.result.metadata.name }} is being created."
