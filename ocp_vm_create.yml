@@ -28,7 +28,7 @@
                 spec:
                   sourceRef:
                     kind: DataSource
-                    name: rhel9
+                    name: centos10
                     namespace: openshift-virtualization-os-images
                   storage:
                     resources:
