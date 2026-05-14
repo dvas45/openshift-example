@@ -1,0 +1,34 @@
+---
+- name: Snapshot all VMs in an OpenShift Project
+  hosts: localhost
+  gather_facts: false
+  vars:
+    target_namespace: "vas42-dev"
+    # Generates a date like 2026-05-14-0937
+    snapshot_date: "{{ now(fmt='%Y-%m-%d-%H%M') }}"
+
+  tasks:
+    - name: Get all VMs in the project
+      kubernetes.core.k8s_info:
+        api_version: kubevirt.io/v1
+        kind: VirtualMachine
+        namespace: "{{ target_namespace }}"
+      register: vm_list
+
+    - name: Create a dated snapshot for each VM
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: snapshot.kubevirt.io/v1alpha1
+          kind: VirtualMachineSnapshot
+          metadata:
+            # unique name: vmname-snapshot-2026-05-14
+            name: "{{ item.metadata.name }}-snap-{{ snapshot_date }}"
+            namespace: "{{ target_namespace }}"
+          spec:
+            source:
+              apiGroup: kubevirt.io
+              kind: VirtualMachine
+              name: "{{ item.metadata.name }}"
+      loop: "{{ vm_list.resources }}"
+      when: vm_list.resources | length > 0
