@@ -4,7 +4,7 @@
   gather_facts: false
   vars:
     vm_name: "centos10"
-    namespace: "vas42-dev"
+    namespace: "vas-outlook-dev"
 
   tasks:
     - name: Generate current date for snapshot name
