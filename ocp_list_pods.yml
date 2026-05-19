@@ -9,7 +9,7 @@
       kubernetes.core.k8s_info:
         api_version: v1
         kind: Pod
-        namespace: "{{ vas42-dev }}"
+        namespace: "vas42-dev"
       register: pod_list
 
     - name: Display Pods
