@@ -1,5 +1,5 @@
 ---
 plugin: redhat.openshift_virtualization.kubevirt
 namespaces:
-  - "{{ mynamespace }}"
+  - vas42-dev
 validate_certs: false
