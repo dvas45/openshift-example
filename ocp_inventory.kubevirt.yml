@@ -1,5 +1,5 @@
 ---
 plugin: redhat.openshift_virtualization.kubevirt
 namespaces:
-  - vas42-dev
+  - vas-outlook-dev
 validate_certs: false
