@@ -10,5 +10,5 @@
       register: vm_info
 
     - name: Display VM IP Address
-      debug:
-        msg: "{{ vm_info.resources[0].status.interfaces[0].ipAddress }}"
+      ansible.builtin.debug:
+        msg: "The IP address is {{ ansible_default_ipv4.address }}"
