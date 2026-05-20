@@ -9,6 +9,6 @@
         namespace: "{{ ocp_namespace }}"  
       register: vm_info
       
-   - name: Display VM IP Address
-     ansible.builtin.debug:
-       msg: "The IP address is {{ ansible_default_ipv4.address }}"
+    - name: Display VM IP Address
+      ansible.builtin.debug:
+        msg: "The IP address is {{ ansible_default_ipv4.address }}"
