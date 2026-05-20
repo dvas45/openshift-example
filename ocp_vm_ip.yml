@@ -6,7 +6,7 @@
     - name: Get VirtualMachines info 
       redhat.openshift_virtualization.kubevirt_vm_info:
         name: "{{ myvm }}"
-        namespace:  "{{ mynamespace }}"
+        namespace: "{{ ocp_namespace }}"  
       register: vm_info
 
     - name: Display VM IP Address
