@@ -3,12 +3,12 @@
   hosts: localhost
   gather_facts: false
   tasks:
-    - name: Get VirtualMachines info 
+    - name: Get VirtualMachines info
       redhat.openshift_virtualization.kubevirt_vm_info:
         name: "{{ vm_name }}"
-        namespace: "{{ ocp_namespace }}"  
+        namespace: "{{ ocp_namespace }}"
       register: vm_info
-      
+
     - name: Display VM IP Address
       ansible.builtin.debug:
         msg: "The IP address is {{ ansible_default_ipv4.address }}"
