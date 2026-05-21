@@ -1,0 +1,14 @@
+---
+- name: Force VM to crash
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+
+    - name: Replace all 'xfs' entries with 'vfat' in /etc/fstab
+      ansible.builtin.replace:
+        path: /etc/fstab
+        regexp: '\bxfs\b'
+        replace: 'vfat'
+        backup: false
