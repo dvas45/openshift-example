@@ -1,0 +1,16 @@
+---
+- name: Hot-plug and persist an existing disk to a Virtual Machine
+  hosts: all
+  gather_facts: false
+  vars: # You define these vars from the job template in automation controller
+    disk_name: 1
+    vm_name: 2
+    ns: 3
+
+  tasks:
+
+    - name: Hot-plug disk to running VM by using virtctl
+      ansible.builtin.command:
+        cmd: >- 4
+          virtctl addvolume {{ vm_name }} --volume-name={{ disk_name }} --persist
+          -n {{ ns }} --kubeconfig auth/kubeconfig
